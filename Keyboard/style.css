@@ -1,0 +1,66 @@
+h1 {
+    color:#808080;
+    margin-bottom: 40px;
+    margin-left: 25px;
+}
+#keyboard {
+    border: 1px solid #000000;
+    padding: 5px;
+    display: block;
+    position: relative;
+    width: 768px;
+    background: #e9e5e9;
+}
+#keyboard::after {
+    content: "";
+    display: block;
+    clear: both;
+}
+#keyboard .enter {
+    position: absolute;
+    top: 69px;
+    left: 709px;
+    height: 114px;
+    line-height: 7;
+}
+#keyboard .shift {
+   width: 132px;
+}
+#keyboard .space {
+    width: 480px;
+ }
+.k-key {
+    width: 50px;
+    height: 50px;
+    border: 1px solid black;
+    margin: 3px;
+    padding: 3px;
+    float: left;
+    border-radius: 4px;
+    text-align: center;
+    line-height: 40px; /* вертикально по центру */
+    text-transform: uppercase;
+    background: #a3e8de;
+}
+h2 {
+    color: #808080;
+    margin-left: 25px;
+}
+input {
+    margin: 25px;
+    border: 2px solid grey;
+    padding: 15px;
+    width: 690px;
+    font-size: 20px;
+}
+.clearfix {
+    clear: both; /* очистка потока*/
+}
+.active {
+    color: white; /*при активации меняет цвет*/
+    background: #d6dd90;;
+    /* cursor: pointer; */
+}
+.k-key:hover {
+    cursor: pointer;
+}

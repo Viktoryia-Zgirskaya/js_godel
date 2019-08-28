@@ -1,0 +1,150 @@
+<html>
+    <head>
+        <style>
+            
+            #main{
+             background-color: rgb(194, 188, 188);
+            position: relative;
+            margin: 0 auto;
+            width: 700px;
+            }
+            
+            th{
+                width: 93px ;
+                height: 93px;
+                vertical-align: top;
+                
+            }
+            #man{
+               position: absolute;
+              
+               margin-left: -45;
+            } 
+            
+        </style>
+    </head>
+    <body>
+
+<div id="main">
+        <table  border="2px ,black">
+            <tr>
+                <th class="field" ></th>
+                <th class="field" ></th>
+                <th class="field" ></th>
+                <th class="field" ></th>
+                <th class="field" ></th>
+                <th class="field" ></th>
+                <th class="field" ></th>
+                
+            </tr>
+            <tr>
+                <th class="field" ></th>
+                <th class="field" ></th>
+                <th class="field" ></th>
+                <th class="field" ></th>
+                <th class="field" ></th>
+                <th class="field" ></th>
+                <th class="field" ></th>
+               
+                </tr>
+            <tr>
+                <th class="field" ></th>
+                <th class="field" ></th>
+                <th class="field" ></th>
+                <th class="field" ></th>
+                <th class="field" ></th>
+                <th class="field" ></th>
+                <th class="field" ></th>
+               
+            </tr>
+            <tr>
+                <th class="field" ></th>
+                <th class="field" ></th>
+                <th class="field" ></th>
+                <th class="field" ></th>
+                <th class="field" ></th>
+                <th class="field" ></th>
+                <th class="field" ></th>
+               
+            </tr>
+            <tr>
+                <th class="field" ></th>
+                <th class="field" ></th>
+                <th class="field" ></th>
+                <th class="field" ></th>
+                <th class="field" ></th>
+                <th class="field" ></th>
+                <th class="field" ></th>
+               
+            </tr>
+            <tr>
+                <th class="field" ></th>
+                <th class="field" ></th>
+                <th class="field" ></th>
+                <th class="field" ></th>
+                <th class="field" ></th>
+                <th class="field" ></th>
+                <th class="field" ></th>
+               
+            </tr>
+            <tr>
+                <th class="field" ></th>
+                <th class="field" ></th>
+                <th class="field" ></th>
+                <th class="field" ></th>
+                <th class="field" ></th>
+                <th class="field" ></th>
+                <th class="field" ></th>
+               
+            </tr>
+          
+               
+              
+        </table>
+        
+    </div>
+        <script>
+            var field = document.getElementsByClassName('field');
+            var position = {'x':0, 'y':0, 'key':0};
+            field[position['key']].style.backgroundImage = "url('img/man_u.png')";
+            
+
+            document.onkeydown = function(event){
+                console.log(event);
+                if(event.key == 'ArrowRight'){
+                    field[position['key']].style.backgroundImage = "url('img/man_r.png')";
+                    if(position['x'] < 6){
+                        field[position['key']].style.backgroundImage = "none";
+                        position['key'] += 1;
+                        position['x'] += 1;
+                        field[position['key']].style.backgroundImage = "url('img/man_r.png')";
+                    }
+                }else if(event.key == 'ArrowLeft'){
+                    field[position['key']].style.backgroundImage = "url('img/man_l.png')";
+                    if(position['x'] > 0){
+                        field[position['key']].style.backgroundImage = "none";
+                        position['key'] -= 1;
+                        position['x'] -= 1;
+                        field[position['key']].style.backgroundImage = "url('img/man_l.png')";
+                    }
+                }else if(event.key == 'ArrowDown'){
+                    field[position['key']].style.backgroundImage = "url('img/man_d.png')";
+                    if(position['y'] < 6){
+                        field[position['key']].style.backgroundImage = "none";
+                        position['key'] += 7;
+                        position['y'] += 1;
+                        field[position['key']].style.backgroundImage = "url('img/man_d.png')";
+                    }
+                }else if(event.key == 'ArrowUp'){
+                    field[position['key']].style.backgroundImage = "url('img/man_u.png')";
+                    if(position['y'] > 0){
+                        field[position['key']].style.backgroundImage = "none";
+                        position['key'] -= 7;
+                        position['y'] -= 1;
+                        field[position['key']].style.backgroundImage = "url('img/man_u.png')";
+                    }
+                }
+            }
+        </script>
+    </body>
+</html>
