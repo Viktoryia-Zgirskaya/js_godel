@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+h1 {
+    text-align: center;
+  }
+  
+.hidden {
+    display: none;
+  }
+.test_d { 
+    margin: auto;
+    height: 450px;
+    width: 450px;
+    background-color: rgb(175, 223, 238);
+    border-radius: 10px;
+    border: #024E68 2px solid;
+    position: relative;
+  }
+.test_d_2 {
+    margin: 5px;
+    padding: 5px;
+  }
+.btn {
+    width: 100px;
+    height: 30px;
+    border-radius: 3px;
+    position: absolute;
+    left: 50px;
+    border: none;
+  } 
+  li{
+    list-style-type:none;
+  }
+
+</style>
+</head>
+<body>
+
+<div class="main">
+  <div id="description" class="hidden"></div>
+  <div class="test_d">
+    <div class ="test_d_2">
+    <h1 class="q">В какой компании лучше всего начинать IT карьеру?</h1>
+    <ul class="a">
+      <li><input name="radio" type="radio">Godel</li>
+      <li><input name="radio" type="radio">EPAM</li>
+      <li><input name="radio" type="radio">Itransition</li>
+    </ul>
+    <button id="check" class="btn">Проверить</button>
+    </div>
+  </div>
+</div>
+
+<script>
+let event = 0;
+let checker = 0;
+let li = document.getElementsByTagName('li');
+let h = document.getElementsByTagName('h1');
+let radio = document.getElementsByName('radio');
+let input = '<input name="radio" type="radio">';
+let test_tag = document.getElementsByClassName('test_d');
+let description = document.getElementById('description');
+
+
+document.getElementById('check').addEventListener('click', run_app);
+
+let ques = [
+  {question:"В какой компании лучше всего начинать IT карьеру?", answers:["Godel", "EPAM", "Itransition"], id:1, result:0},
+  {question:"Какая компания была основным партнером на британском фестивале?", answers:["Godel", "EPAM", "Itransition"], id:2, result:0},
+  {question:"В какой компании главный офис расположен в Манчестере?", answers:["Godel", "EPAM", "Itransition"], id:3, result:0}
+];
+
+function run_app() {
+  check_res();
+  check_logic();
+  h[0].innerHTML = ques[event]['question'];
+  let i;
+    for (i = 0; i < ques[event]['answers'].length; i++) {
+    li[i].innerHTML = input + ques[event]['answers'][i];
+    }
+}
+
+function check_logic() {
+  if (event < ques.length - 1) {
+    event++;
+  } else {
+    test_tag[0].classList.add('hidden');
+    if (checker == ques.length) {
+        description.innerHTML = "Поздравляем вы работник Godel";
+        
+    }else {
+        description.innerHTML = "Извините попробуйте в другой компании"
+    }
+    description.classList.remove('hidden');
+  }
+}
+
+function check_res() {
+  if (radio[ques[event]['result']].checked) {
+    checker++;
+  }
+}
+</script>
+
+</body>
+</html>
