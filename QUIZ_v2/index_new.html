@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Godel Test</title>
+    <style>
+    h1 {
+      text-align: center;
+    }
+    h2 {
+      text-align: center;
+    }
+
+    .hidden {
+      display: none;
+    }
+    .test_d {
+      margin: auto;
+      padding: 15px;
+      width: 450px;
+      border-radius: 10px;
+      border: black 3px solid;
+    }
+    .test_d_2 {
+      margin: 5px;
+      padding: 5px;
+    }
+    .btn {
+      width: 100px;
+      height: 30px;
+      border-radius: 3px;
+      border: none;
+    }
+    .start {
+      width: 100px;
+      height: 30px;
+      border-radius: 3px;
+      text-align: center;
+      border: black 3px solid;
+      width: 100%;
+      font-size: 24px;
+      cursor: pointer;
+    }
+    .start:hover {
+      background-color: #E1DFDF;
+    }
+    .answ1 {
+      width: 100px;
+      height: 30px;
+      border-radius: 3px;
+      text-align: center;
+      border: black 3px solid;
+      width: 100%;
+      font-size: 24px;
+      cursor: pointer;
+    }
+    .answ1:hover {
+      background-color: #E1DFDF;
+    }
+    .answ {
+      width: 100px;
+      height: 30px;
+      border-radius: 3px;
+      text-align: center;
+      border: black 3px;
+      border-style: none solid solid solid;
+      width: 100%;
+      font-size: 24px;
+      cursor: pointer;
+    }
+    .answ:hover {
+      background-color: #E1DFDF;
+    }
+    .red {
+      background-color: #FEBFBF;
+    }
+    .green {
+      background-color: #C2FEBF;
+    }
+    li{
+      list-style-type:none;
+    }
+    </style>
+    </head>
+  <body>
+
+    <div class="main">
+      <div id="description" class="hidden"></div>
+      <div id="field" class="test_d">
+        <div class ="test_d_2">
+          <h1 class="q">Godel Test</h1>
+          <h2 id="stq" class="q2">Начать тест?</h2>
+          <div id="st" class="start">Начать</div>
+          <div id="1" class="answ1 hidden" onClick="check(this.id)"></div>
+          <div id="2" class="answ hidden" onClick="check(this.id)"></div>
+          <div id="3" class="answ hidden" onClick="check(this.id)"></div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      let stopper = true;
+      let correct_a = 0;
+      let fails_a = 0;
+
+      document.getElementById('field').addEventListener('click', run_app);
+
+      let q_list = [
+        {question:"В какой компании лучше всего начинать IT карьеру?", answers:[{text:"Godel", a_i:1}, {text:"EPAM", a_i:2}, {text:"Itransition", a_i:3}], id:1},
+        {question:"Какая компания была основным партнером на британском фестивале?", answers:[{text:"Godel", a_i:1}, {text:"EPAM", a_i:2}, {text:"Itransition", a_i:3}], id:2},
+        {question:"В какой компании главный офис расположен в Манчестере?", answers:[{text:"Godel", a_i:1}, {text:"EPAM", a_i:2}, {text:"Itransition", a_i:3}], id:3}
+      ];
+
+      let temp_q_list = q_list.slice();
+      let checker = q_list.length;
+
+
+      function check(clicked_id)
+      {
+          if (clicked_id == 1) {
+            correct_a++;
+          } else {
+            fails_a++;
+          }
+      }
+
+      function run_app() {
+        if (stopper) {
+          document.getElementById('1').classList.remove('hidden');
+          document.getElementById('2').classList.remove('hidden');
+          document.getElementById('3').classList.remove('hidden');
+          document.getElementById('st').classList.add('hidden');
+          stopper = false;
+        }
+        do_logic();
+      }
+
+      function do_logic() {
+        if (checker > 0) {
+          let temp_id = 0;
+          if (temp_q_list.length > 1) {
+            temp_id = Math.floor(Math.random()*temp_q_list.length);
+          }
+          let new_obj = temp_q_list[temp_id];
+          let temp_obj = temp_q_list.splice(temp_id, 1);
+          document.getElementById('stq').innerHTML = new_obj['question'];
+
+          let temp_a_list = new_obj['answers'].slice();
+          for (i = new_obj['answers'].length; i > 0; i--) {
+            let temp_a_id = 0;
+            if (temp_a_list.length > 1) {
+              temp_a_id = Math.floor(Math.random()*temp_a_list.length);
+            }
+            let new_a_obj = temp_a_list[temp_a_id];
+            let temp_a_obj = temp_a_list.splice(temp_a_id, 1);
+            document.getElementById(i).innerHTML = new_a_obj['text'];
+            document.getElementById(i).id = new_a_obj['a_i'];
+          }
+
+          checker--;
+
+        } else {
+          document.getElementById('1').classList.add('hidden');
+          document.getElementById('2').classList.add('hidden');
+          document.getElementById('3').classList.add('hidden');
+          let result_text = "Извините попробуйте в другой компании";
+          if (correct_a == 3) {
+            result_text = "Поздравляем вы работник Godel";
+            document.getElementById('st').classList.add('green');
+          } else {
+            document.getElementById('st').classList.add('red');
+          }
+          let sum_res = correct_a + fails_a;
+          score_text = "Вы ответили правильно на " + correct_a + " из " + sum_res;
+          document.getElementById('st').innerHTML = score_text;
+          document.getElementById('stq').innerHTML = result_text;
+          document.getElementById('st').classList.remove('hidden');
+        }
+      }
+
+
+    </script>
+
+  </body>
+</html>
